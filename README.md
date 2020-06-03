@@ -1,7 +1,9 @@
 Tg2SIP DEMO
 ===========
 
-It's just a demo to show what you can do with Tg2SIP, and what can a `Software Engineer` that love `VoIP`.
+> Note: This demo is not yet compleated. For now you just can review code.
+
+It's just a demo to show what you can do with Tg2SIP, and what can a `Software Engineer` that love `VoIP` do.
 
 # What you can do
 
