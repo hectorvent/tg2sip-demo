@@ -1,2 +1,9 @@
-ansible/hosts
-ansible/development.playbook.yml
+# Ansible
+hosts
+development.playbook.yml
+
+# Java
+webconsole/target
+
+# Exclude python files
+*.py

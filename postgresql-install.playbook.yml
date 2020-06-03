@@ -1,0 +1,53 @@
+#!/usr/bin/env ansible-playbook
+- name: install postgres
+  hosts: tg2sip-demo
+  tasks:
+    - name: add postgresql apt key file
+      apt_key:
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
+
+    - name: add postgresql repository
+      apt_repository:
+        repo: deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main
+        state: present
+
+    - name: install postgresql 12
+      apt:
+        update_cache: yes
+        name:
+          - postgresql-12
+
+    - name:
+      debug:
+        msg: "the postgres network is {{ development_postgres_network }} with password {{ postgres_password}}"
+
+    # development tasks
+    - name: enable postgresql remote login
+      lineinfile:
+        path: /etc/postgresql/12/main/postgresql.conf
+        regexp: '^#listen_addresses ='
+        line: "listen_addresses = '*'"
+      when: development_postgres_network is defined and development_postgres_network != ''
+
+    - name: enable postgresql remote login
+      lineinfile:
+        path: /etc/postgresql/12/main/pg_hba.conf
+        regexp: '^host    all             all         {{ development_postgres_network }}              md5'
+        line: 'host    all             all         {{ development_postgres_network }}              md5'
+      when: development_postgres_network is defined and development_postgres_network != ''
+
+    - name: enable and start postgresql
+      systemd:
+        state: started
+        name: postgresql
+        enabled: yes
+
+    - name: change postgres user password
+      become: true
+      become_method: su
+      become_user: postgres
+      shell:
+        cmd: psql -c "alter user postgres with password '{{ postgres_password }}'"
+
+
