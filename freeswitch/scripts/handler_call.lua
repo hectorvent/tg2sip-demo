@@ -9,13 +9,13 @@ local inspect = require('inspect')
 local audio_directory = '/usr/share/freeswitch/sounds/tg2sip/'
 
 function hangup_hook(s, status)
-    local call_id = session:getVariable('uuid')
-    db_end_call_cdr({ call_id = call_id })
+    local callid = session:getVariable('uuid')
+    db_end_call_cdr({ callid = callid })
     freeswitch.consoleLog('info', 'Ending call')
 end
 
 function input_callback(session, type, obj, arg)
-    freeswitch.consoleLog('info', 'Entando al dtmfffffff')
+    freeswitch.consoleLog('info', 'Get an event')
 
     if type == "dtmf" then
         if obj.digit == "1" then
@@ -32,7 +32,7 @@ end
 -- beethoven_no5.wav
 local default_sound = audio_directory..'mozart_no1.wav';
 local telegram_id = get_telegram_id_from_headers()
-local user = db_get_user(telegram_id)
+local user = get_user_by_telegram_id(telegram_id)
 
 if user ~= nil then
 
@@ -43,20 +43,20 @@ if user ~= nil then
     -- TODO: check if the user has redirected a call to:
 else
     user = get_user_from_headers()
-    db_register_user(user)
+    save_user(user)
     -- TODO: INSER default user
 end
 
 freeswitch.consoleLog('info', inspect(user))
 
-local call_id = session:getVariable('uuid')
+local callid = session:getVariable('uuid')
 local cdr = {
     call_type =  'inbound',
-    telegram_id = user.telegram_id,
-    call_id = call_id
+    user_id = user.id,
+    callid = callid
 }
 
-db_start_call_cdr(cdr)
+save_cdr(cdr)
 
 session:answer()
 session:setHangupHook('hangup_hook')
@@ -65,4 +65,4 @@ session:execute("playback", default_sound)
 
 freeswitch.consoleLog('info', inspect(cdr))
 -- if the music end before user hangup update ending time on CDR
-db_end_call_cdr(cdr)
+end_cdr(cdr)
