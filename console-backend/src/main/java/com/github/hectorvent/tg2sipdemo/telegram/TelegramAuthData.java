@@ -1,7 +1,7 @@
-package com.github.hectorvent.tg2sipdemo;
+package com.github.hectorvent.tg2sipdemo.telegram;
 
 
-public class TelegramUser {
+public class TelegramAuthData {
 
     public Long id;
     public String firstName;
@@ -10,5 +10,7 @@ public class TelegramUser {
     public String hash;
     public Long authDate;
     public String photoUrl;
+
+
 
 }
