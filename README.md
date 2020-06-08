@@ -25,3 +25,4 @@ It's just a demo to show what you can do with Tg2SIP, and what can a `Software E
 - **ReactJS**: Javascript web library
 - **Debian**: Linux Server on all this magic happend
 - **Telegram Login**: way to login into the demo is using this service provide by telegram
+- **Docker**: As alternative way to deploy all services.
