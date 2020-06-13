@@ -38,8 +38,8 @@ public class User extends PanacheEntityBase {
     @Column(name = "default_sound")
     public String defaultSound;
 
-    @Column(name = "show_as_public")
-    public Boolean showAsPublic;
+    @Column(name = "show_as_public", nullable = false)
+    public boolean showAsPublic;
 
     @JsonbTransient
     @OneToMany(mappedBy = "user")

@@ -17,7 +17,6 @@ public class CdrDto {
     public long duration;
     public String username;
     public String name;
-    public User user;
     public boolean mine;
 
 
@@ -27,16 +26,21 @@ public class CdrDto {
         cdto.callType = cdr.callType;
         cdto.callid  = cdr.callid;
         cdto.date = DTF.format(cdr.startDate);
-        cdto.duration = ChronoUnit.SECONDS.between(cdr.startDate, cdr.endDate);
-
         cdto.mine = cdr.user.telegramUsername.equals(username);
 
-        if (cdto.user.showAsPublic || cdto.mine){
+        if (cdr.user.showAsPublic || cdto.mine){
             cdto.name = cdr.user.telegramName;
             cdto.username = cdr.user.telegramUsername;
         } else {
             cdto.name = "Anonymous";
             cdto.username = "anonymous";
+        }
+
+        // if the endDate is null means the call is in process.
+        if (cdr.endDate != null){
+            cdto.duration = ChronoUnit.SECONDS.between(cdr.startDate, cdr.endDate);
+        } else {
+            cdto.duration = -1;
         }
         return cdto;
     }

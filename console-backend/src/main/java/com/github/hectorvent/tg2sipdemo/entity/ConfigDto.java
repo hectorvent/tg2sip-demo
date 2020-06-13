@@ -5,7 +5,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 @RegisterForReflection
 public class ConfigDto {
 
-    public Boolean showAsPublic;
+    public boolean showAsPublic;
     public Long id;
     public String name;
     public String username;
