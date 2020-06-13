@@ -20,7 +20,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 public class User extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     @Column(nullable = false, unique = true, name = "telegram_id")
@@ -49,7 +49,11 @@ public class User extends PanacheEntityBase {
         return find("id", id).firstResult();
     }
 
-    public static User findTelegramId(Long telegramId) {
+    public static User findByTelegramId(Long telegramId) {
         return find("telegramId", telegramId).firstResult();
+    }
+
+    public static User findByTelegramUsername(String telegramUsername) {
+        return find("telegramUsername", telegramUsername).firstResult();
     }
 }

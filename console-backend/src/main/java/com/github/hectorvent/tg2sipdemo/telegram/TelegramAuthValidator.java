@@ -7,21 +7,21 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-public class LoginValidate {
+public class TelegramAuthValidator {
 
     private TelegramAuthData authData;
     private String botToken;
 
-    public static final LoginValidate createIntance(){
-        return new LoginValidate();
+    public static final TelegramAuthValidator createIntance(){
+        return new TelegramAuthValidator();
     }
 
-    public LoginValidate setBotToken(String botToken){
+    public TelegramAuthValidator setBotToken(String botToken){
         this.botToken = botToken;
         return this;
     }
 
-    public LoginValidate setAuthData(TelegramAuthData authData){
+    public TelegramAuthValidator setAuthData(TelegramAuthData authData){
         this.authData = authData;
         return this;
     }

@@ -1,6 +1,8 @@
 package com.github.hectorvent.tg2sipdemo.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ public class Cdr extends PanacheEntityBase {
     @Column(name = "call_type")
     public String callType;
 
-    @Column(name = "callid")
+    @Column(name = "call_id")
     public String callid;
 
     @Column(name = "start_date")
@@ -35,6 +37,10 @@ public class Cdr extends PanacheEntityBase {
 
     public static Cdr findById(final int id) {
         return find("id", id).firstResult();
+    }
+
+    public static List<Cdr> findByUsername(final String username) {
+        return find("user.telegramUsername", username).list();
     }
 
 }

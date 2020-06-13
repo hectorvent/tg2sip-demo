@@ -12,5 +12,8 @@ public class TelegramAuthData {
     public String photoUrl;
 
 
+    public String getFullName(){
+        return firstName+' '+lastName;
+    }
 
 }
