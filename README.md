@@ -19,12 +19,12 @@ It's just a demo to show what you can do with this [Tg2SIP](https://github.com/h
 * **Freeswitch**: VoIP Switch Platform
 * **Postgresql**: Database server to hold call logs and Apps configuration
 * **Lua**: Used internally on Freeswitch to manage the dialplan, in the future I will include a version with Python3.
-* **Ansible**: A RedHat tool to make deployment and provisioning
+* **Ansible**: A Red Hat tool to make deployment and provisioning
 * **Quarkus**: A Kubernetes Native Java stack
 * **ReactJS**: Javascript web library
 * **Debian**: Linux Server on all this magic happend
 * **Telegram Login**: way to login into the demo is using this service provide by telegram
-
+* **Docker**: As alternative way to deploy all services.
 
 ## TODO:
 
