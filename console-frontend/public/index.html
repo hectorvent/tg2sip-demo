@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+      <meta charset="UTF-8">
+      <title>Tg2SIP Demo - Web Console</title>
+
+      <style>
+        nav {
+           padding-bottom: 55px;
+        }
+      </style>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-lg col-mg-12">
+            <a class="navbar-brand" href="#">Tg2SIP Demo</a>
+
+            <form class="form-inline">
+            <button class="btn btn-outline-success my-2 my-sm-0">Login with Telegram</button>
+            <button style="margin-left: 3px;" class="btn btn-outline-primary my-2 my-sm-0">Call me</button>
+            </form>
+
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                  <a class="nav-link" href="#post">Post<span class="sr-only"></span></a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#mypost">My Post</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#profile"> Profile</a>
+                </li>
+              </ul>
+
+            </div> -->
+        </nav>
+
+      <div>
+
+      </div>
+
+      <div id="app" class="col-md-12 col-lg-12" style="padding-top: 65px;">
+        <h3> Call Logs </h3>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Date</th>
+              <th scope="col">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Hector Ventura - <a href="t.me/hectorvent">@hectorvent</a></th>
+              <td>@tg2sip</td>
+              <td>05-06-2020 11:35:01 PM</td>
+              <td>55s</td>
+            </tr>
+            <tr>
+              <th scope="row">Juanita Guzman - <a href="t.me/jntguzman">@jntguzman</a></th>
+              <td>@tg2sip</td>
+              <td>05-06-2020 11:35:01 PM</td>
+              <td>55s</td>
+            </tr>
+            <tr>
+              <th scope="row">Hector Ventura - <a href="t.me/hectorvent">@hectorvent</a></th>
+              <td>@tg2sip</td>
+              <td>05-06-2020 11:35:01 PM</td>
+              <td>55s</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <script src="/app/index.js"></script>
+    </div>
+  </body>
+</html>
