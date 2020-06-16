@@ -3,7 +3,12 @@ hosts
 development.playbook.yml
 
 # Java
-webconsole/target
+console-backend/target
+
+console-frontend/node_modules
+
+console-frontend/public/app/
+!console-frontend/public/app/.gitkeep
 
 # Exclude python files
 *.py
