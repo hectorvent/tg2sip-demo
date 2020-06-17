@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+      <meta charset="UTF-8">
+      <title>Tg2SIP Demo - Web Console</title>
+
+      <style>
+        nav {
+           padding-bottom: 55px;
+        }
+      </style>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-lg col-mg-12">
+            <a class="navbar-brand" href="#">Tg2SIP Demo</a>
+
+            <form class="form-inline">
+            <button class="btn btn-outline-success my-2 my-sm-0">Login with Telegram</button>
+            <button style="margin-left: 3px;" class="btn btn-outline-primary my-2 my-sm-0">Call me</button>
+            </form>
+        </nav>
+
+      <div id="app" class="col-md-12 col-lg-12" style="padding-top: 65px;">
+        <h3> Call Logs </h3>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scooe="col">Type</th>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Date</th>
+              <th scope="col">Duration</th>
+            </tr>
+          </thead>
+          <tbody id="calllog-details">
+
+             {#for call in calllog}
+              <tr>
+                <td>{#if call.callType == 'inbound'} Outbound {#else} Inbound {/if}</td>
+              <th scope="row">{call.name ?: 'Unknown'}
+                {#if call.username == 'anonymous'}
+
+                {#else}
+                 - <a target="blank" href="https://t.me/{call.username}">@{call.username}</a></th>
+                {/if}
+
+                <td>@tg2sip</td>
+               <td>{call.date}</td>
+               <td>{call.duration}s</td>
+             {/for}
+          </tbody>
+        </table>
+      </div>
+      <!-- <script src="/app/index.js"></script> -->
+    </div>
+  </body>
+</html>
