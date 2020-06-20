@@ -18,19 +18,12 @@ import com.github.hectorvent.tg2sipdemo.entity.CdrDto;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import io.quarkus.qute.Template;
-import io.quarkus.qute.TemplateInstance;
-
-
 @Path("/cdr")
 @RequestScoped
 public class CdrResource {
 
     @Inject
     JsonWebToken jwt;
-
-    @Inject
-    Template cdr;
 
     @GET
     @PermitAll
@@ -50,22 +43,6 @@ public class CdrResource {
             return calls.stream()
                 .map( c -> CdrDto.mappper(c, username))
                 .collect(Collectors.toList());
-    }
-
-
-    @GET
-    @PermitAll
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance get() {
-
-        String username = jwt.getSubject();
-
-        List<Cdr> calls = Cdr.findAll().list();
-        List<CdrDto> calllog =  calls.stream()
-                .map( c -> CdrDto.mappper(c, username))
-                .collect(Collectors.toList());
-
-        return cdr.data("calllog", calllog);
     }
 
 }

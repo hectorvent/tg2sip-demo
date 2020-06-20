@@ -2,6 +2,7 @@ package com.github.hectorvent.tg2sipdemo;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.Json;
 import javax.transaction.Transactional;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -57,7 +58,7 @@ public class AuthResource {
                 user.persist();
             }
 
-            return Response.ok(token).build();
+            return Response.ok(Json.createObjectBuilder().add("token", token).build()).build();
         } catch(Exception ex){
         }
 
