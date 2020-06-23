@@ -7,9 +7,30 @@
         nav {
            padding-bottom: 55px;
         }
+
+        .user {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: cover;
+        }
+
       </style>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  </head>
+      <script type="text/javascript">
+        function telegramAuth(user) {
+          var event = new CustomEvent('tg2sip.telegram.auth', { 'detail': user });
+          document.dispatchEvent(event);
+        }
+        function logout(){
+          document.dispatchEvent(new Event('tg2sip.telegram.logout'));
+        }
+      </script>
+    </head>
   <body>
 
     <div class="container-fluid">
@@ -17,21 +38,26 @@
             <a class="navbar-brand" href="#">Tg2SIP Demo</a>
 
             <form class="form-inline" id="form-auth">
-            <!-- <script async src="https://telegram.org/js/telegram-widget.js?9" data-telegram-login="tg2sipdemobot" data-size="large" data-onauth="telegramAuth(user)"></script> -->
-            <script type="text/javascript">
-              function telegramAuth(user) {
-                var event = new CustomEvent('tg2sip.telegram.auth', { 'detail': user });
-                document.dispatchEvent(event);
-              }
-            </script>
-            <button style="margin-left: 3px;" id="btn-callme" class="btn btn-primary my-2 my-sm-0">Call me from @tgsip-demo</button>
-            <a style="margin-left: 3px;" class="btn btn-primary" href="https://t.me/tg2sipdemo">call @tg2sip-demo from your account</a>
-            <button style="margin-left: 3px;" id="btn-callme" class="btn btn-warning my-2 my-sm-0">Show only my calls</button>
-          </form>
+
+              <div id="userInfo" style="display: none">
+                <span style="font-style: italic" id="userName"></span> |
+                <a href="#" onclick="logout(); return;">logout</a>
+                <span id="userImage" class="user">
+                </span>
+              </div>
+            </form>
         </nav>
 
       <div id="app" class="col-md-12 col-lg-12" style="padding-top: 65px;">
         <h3> Call Logs </h3>
+
+        <div class="btn-group">
+        <a target="blank" class="btn btn-primary" href="https://t.me/tg2sipdemo">Call @tg2sipdemo</a>
+
+
+        <button type="button" id="btnCallMe" id="btn-callme" class="btn btn-primary my-2 my-sm-0">Call me</button>
+        <button type="button" id="btnShowMyCalls" id="btn-callme" class="btn btn-warning my-2 my-sm-0">Only Mine</button>
+      </div>
 
         <table class="table table-hover">
           <thead>

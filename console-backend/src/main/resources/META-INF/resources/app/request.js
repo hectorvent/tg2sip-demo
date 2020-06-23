@@ -17,7 +17,7 @@ Request = {
         headers: headers
       }).then(function(response) {
         if (!response.ok) {
-            throw Error(response.statusText);
+            throw new Error(response.statusText);
         }
         return response;
       }).then( res => res.json());
@@ -33,14 +33,13 @@ Request = {
             headers["Authorization"] = `Bearer ${this.token}`;
         }
 
-
         return fetch(path, {
           method: 'PUT',
           body: JSON.stringify(data),
           headers: headers
         }).then(function(response) {
           if (!response.ok) {
-              throw Error(response.statusText);
+              throw new Error(response.statusText);
           }
           return response;
         }).then( res => res.json());
@@ -61,7 +60,7 @@ Request = {
       headers: headers
     }).then(function(response) {
       if (!response.ok) {
-          throw Error(response.statusText);
+          throw new Error(response.statusText);
       }
       return response;
     }).then( res => res.json());
@@ -82,9 +81,9 @@ Request = {
       headers: headers
     }).then(function(response) {
       if (!response.ok) {
-          throw Error(response.statusText);
+          throw new Error(response.statusText);
       }
       return response;
     }).then( res => res.json());
-    }
+  }
 }

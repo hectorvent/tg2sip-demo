@@ -5,12 +5,13 @@ Tg2SipDemo =  {
     setToken(token){
         Request.token  = token;
     },
-    // User Methods
+    getConfig() {
+        return Request.get(`${this.basePath}/config`);
+    },
     getCallLog() {
        return Request.get(`${this.basePath}/cdr`);
     },
-
-     checkTelegramAuth(user){
+    checkTelegramAuth(user){
         return Request.post(`${this.basePath}/auth/check`, user);
     }
 }
