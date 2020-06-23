@@ -26,7 +26,7 @@ public class CdrDto {
         cdto.callType = cdr.callType;
         cdto.callid  = cdr.callid;
         cdto.date = DTF.format(cdr.startDate);
-        cdto.mine = cdr.user.telegramUsername.equals(username);
+        cdto.mine = username != null  && username.equals(cdr.user.telegramUsername);
 
         if (cdr.user.showAsPublic || cdto.mine){
             cdto.name = cdr.user.telegramName;
@@ -40,6 +40,7 @@ public class CdrDto {
         if (cdr.endDate != null){
             cdto.duration = ChronoUnit.SECONDS.between(cdr.startDate, cdr.endDate);
         } else {
+
             cdto.duration = -1;
         }
         return cdto;

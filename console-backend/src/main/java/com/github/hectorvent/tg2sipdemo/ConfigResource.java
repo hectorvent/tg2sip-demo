@@ -9,40 +9,32 @@ import javax.ws.rs.Produces;
 import com.github.hectorvent.tg2sipdemo.entity.ConfigDto;
 import com.github.hectorvent.tg2sipdemo.entity.User;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 @Path("/config")
 @RequestScoped
 public class ConfigResource {
 
+    @ConfigProperty(name = "tg2sipdemo.telegram.bot.username")
+    String telegramBotName;
+
     @Inject
     JsonWebToken jwt;
-
-    private ConfigDto createDefaultConfig(){
-        ConfigDto cd = new ConfigDto();
-
-        cd.name = "Anonymous";
-        cd.phone = "8888888888";
-
-        return cd;
-    }
 
     @GET
     @Produces("application/json")
     public ConfigDto getUser() {
 
+        ConfigDto config = ConfigDto.create(telegramBotName);
+
         String username = jwt.getSubject();
 
-        if (username == null){
-          return createDefaultConfig();
+        if (username != null){
+            User user = User.findByTelegramUsername(username);
+            config.setUserProperties(user);
         }
 
-        User user = User.findByTelegramUsername(username);
-
-        if (user == null){
-            return createDefaultConfig();
-        }
-
-        return ConfigDto.mappper(user);
+        return config;
     }
 }

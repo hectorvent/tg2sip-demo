@@ -38,6 +38,9 @@ public class User extends PanacheEntityBase {
     @Column(name = "default_sound")
     public String defaultSound;
 
+    @Column(name = "telegram_photo")
+    public String telegramPhoto;
+
     @Column(name = "show_as_public", nullable = false)
     public boolean showAsPublic;
 

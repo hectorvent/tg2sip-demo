@@ -10,22 +10,34 @@ public class ConfigDto {
     public String name;
     public String username;
     public String phone;
+    public String photo;
     public String defaultSound;
+    public String botName;
 
-
-    public static final ConfigDto mappper(User user){
-
+    public static final ConfigDto create(String botName){
         ConfigDto cdto = new ConfigDto();
-
-        if (user != null){
-            cdto.showAsPublic = user.showAsPublic;
-            cdto.defaultSound = user.defaultSound;
-            cdto.id = user.telegramId;
-            cdto.name = user.telegramName;
-            cdto.username = user.telegramUsername;
-            cdto.phone = user.telegramPhone;
-        }
+        cdto.name = "Anonymous";
+        cdto.username = "anonymous";
+        cdto.phone = "8888888888";
+        cdto.botName = botName;
+        cdto.id = -1L;
 
         return cdto;
+    }
+
+
+    public void setUserProperties(User user){
+
+        if (user == null){
+            return;
+        }
+
+        showAsPublic = user.showAsPublic;
+        defaultSound = user.defaultSound;
+        id = user.telegramId;
+        name = user.telegramName;
+        username = user.telegramUsername;
+        phone = user.telegramPhone;
+        photo = user.telegramPhoto;
     }
 }

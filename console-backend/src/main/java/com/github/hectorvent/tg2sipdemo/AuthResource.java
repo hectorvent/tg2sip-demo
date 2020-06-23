@@ -24,9 +24,6 @@ public class AuthResource {
     @Inject
     TokenUtils tokenUtils;
 
-    @ConfigProperty(name = "tg2sipdemo.telegram.bot.username")
-    String telegramBotName;
-
     @ConfigProperty(name = "tg2sipdemo.telegram.bot.token")
     String telegramBotToken;
 
@@ -54,8 +51,12 @@ public class AuthResource {
                 user.telegramId = authData.id;
                 user.telegramName = authData.getFullName();
                 user.telegramUsername = authData.username;
+                user.telegramPhoto = authData.photoUrl;
 
                 user.persist();
+            } else {
+                user.telegramPhoto = authData.photoUrl;
+                user.flush();
             }
 
             return Response.ok(Json.createObjectBuilder().add("token", token).build()).build();
