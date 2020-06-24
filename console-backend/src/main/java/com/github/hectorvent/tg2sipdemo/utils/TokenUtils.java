@@ -5,10 +5,12 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
+import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
@@ -39,9 +41,21 @@ public class TokenUtils {
 		claimsBuilder.expiresAt(currentTimeInSecs + duration);
 		// claimsBuilder.groups(groups);
 
-		claimsBuilder.claim("telegramId", userId);
+		claimsBuilder.claim("telegramId", String.valueOf(userId));
 
 		return claimsBuilder.jws().signatureKeyId(privateKeyLocation).sign(privateKey);
+	}
+
+	public static final Optional<Long> getUserId(JsonWebToken jwt){
+		Optional<String> userId = jwt.claim("telegramId");
+
+		Long id = null;
+		try {
+			id = Long.valueOf(userId.get());
+		} catch(Exception ex){
+		}
+
+		return Optional.ofNullable(id);
 	}
 
 	private PrivateKey readPrivateKey(final String pemResName) throws Exception {

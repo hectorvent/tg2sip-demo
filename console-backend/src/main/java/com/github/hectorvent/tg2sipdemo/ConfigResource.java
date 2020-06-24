@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 
 import com.github.hectorvent.tg2sipdemo.entity.ConfigDto;
 import com.github.hectorvent.tg2sipdemo.entity.User;
+import com.github.hectorvent.tg2sipdemo.utils.TokenUtils;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -28,8 +29,8 @@ public class ConfigResource {
     @Produces("application/json")
     public ConfigDto getUser() {
 
-    ConfigDto config = ConfigDto.create(telegramBotName);
-        Optional<Long> telegramId = jwt.claim("telegramId");
+        ConfigDto config = ConfigDto.create(telegramBotName);
+        Optional<Long> telegramId = TokenUtils.getUserId(jwt);
 
         telegramId.ifPresent(id ->{
             User user = User.findByTelegramId(id);

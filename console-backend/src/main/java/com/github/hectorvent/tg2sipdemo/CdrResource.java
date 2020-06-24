@@ -14,6 +14,7 @@ import javax.ws.rs.QueryParam;
 
 import com.github.hectorvent.tg2sipdemo.entity.Cdr;
 import com.github.hectorvent.tg2sipdemo.entity.CdrDto;
+import com.github.hectorvent.tg2sipdemo.utils.TokenUtils;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
@@ -29,7 +30,7 @@ public class CdrResource {
     @Produces("application/json")
     public List<CdrDto> getLastCdr(@QueryParam("mine") boolean mine) {
 
-        Optional<Long> telegramId = jwt.claim("telegramId");
+        Optional<Long> telegramId = TokenUtils.getUserId(jwt);
 
         List<Cdr> calls = Cdr.findAll().list();
             return calls.stream()
