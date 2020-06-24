@@ -55,8 +55,4 @@ public class User extends PanacheEntityBase {
     public static User findByTelegramId(Long telegramId) {
         return find("telegramId", telegramId).firstResult();
     }
-
-    public static User findByTelegramUsername(String telegramUsername) {
-        return find("telegramUsername", telegramUsername).firstResult();
-    }
 }

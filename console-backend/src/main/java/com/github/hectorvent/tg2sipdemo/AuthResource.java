@@ -41,28 +41,28 @@ public class AuthResource {
             return Response.status(Status.BAD_REQUEST).build();
         }
 
+        String token = null;
         try {
-            String token = tokenUtils.generateToken(authData.username, 3600L);
-
-            User user = User.findByTelegramId(authData.id);
-
-            if (user == null){
-                user = new User();
-                user.telegramId = authData.id;
-                user.telegramName = authData.getFullName();
-                user.telegramUsername = authData.username;
-                user.telegramPhoto = authData.photoUrl;
-
-                user.persist();
-            } else {
-                user.telegramPhoto = authData.photoUrl;
-                user.flush();
-            }
-
-            return Response.ok(Json.createObjectBuilder().add("token", token).build()).build();
+            token = tokenUtils.generateToken(authData.username, authData.id, 3600L);
         } catch(Exception ex){
+            return Response.status(Status.BAD_REQUEST).build();
         }
 
-        return Response.status(Status.BAD_REQUEST).build();
+        User user = User.findByTelegramId(authData.id);
+
+        if (user == null){
+            user = new User();
+            user.telegramId = authData.id;
+            user.telegramName = authData.getFullName();
+            user.telegramUsername = authData.username;
+            user.telegramPhoto = authData.photoUrl;
+
+            user.persist();
+        } else {
+            user.telegramPhoto = authData.photoUrl;
+            user.flush();
+        }
+
+        return Response.ok(Json.createObjectBuilder().add("token", token).build()).build();
     }
 }

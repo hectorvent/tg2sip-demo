@@ -22,7 +22,7 @@ public class TokenUtils {
 	@ConfigProperty(name="tg2sipdemo.jwt.privatekey.location")
 	String privateKeyLocation;
 
-	public String generateToken(String username, Long duration) throws Exception {
+	public String generateToken(String username, Long userId,  Long duration) throws Exception {
         // public static String generateToken(String username, Set<Role> roles, Long duration, String issuer) throws Exception {
 
 		PrivateKey privateKey = readPrivateKey(privateKeyLocation);
@@ -38,6 +38,8 @@ public class TokenUtils {
 		claimsBuilder.issuedAt(currentTimeInSecs);
 		claimsBuilder.expiresAt(currentTimeInSecs + duration);
 		// claimsBuilder.groups(groups);
+
+		claimsBuilder.claim("telegramId", userId);
 
 		return claimsBuilder.jws().signatureKeyId(privateKeyLocation).sign(privateKey);
 	}
