@@ -2,6 +2,7 @@ package com.github.hectorvent.tg2sipdemo.entity;
 
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
@@ -20,13 +21,14 @@ public class CdrDto {
     public boolean mine;
 
 
-    public static final CdrDto mappper(Cdr cdr, String username){
+    public static final CdrDto mappper(Cdr cdr, Optional<Long> telegramId){
 
         CdrDto cdto = new CdrDto();
         cdto.callType = cdr.callType;
         cdto.callid  = cdr.callid;
         cdto.date = DTF.format(cdr.startDate);
-        cdto.mine = username != null  && username.equals(cdr.user.telegramUsername);
+
+        telegramId.ifPresent(id-> cdto.mine = cdr.user.telegramId.equals(id));
 
         if (cdr.user.showAsPublic || cdto.mine){
             cdto.name = cdr.user.telegramName;
@@ -40,9 +42,9 @@ public class CdrDto {
         if (cdr.endDate != null){
             cdto.duration = ChronoUnit.SECONDS.between(cdr.startDate, cdr.endDate);
         } else {
-
             cdto.duration = -1;
         }
+
         return cdto;
     }
 

@@ -1,5 +1,7 @@
 package com.github.hectorvent.tg2sipdemo;
 
+import java.util.Optional;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -26,14 +28,13 @@ public class ConfigResource {
     @Produces("application/json")
     public ConfigDto getUser() {
 
-        ConfigDto config = ConfigDto.create(telegramBotName);
+    ConfigDto config = ConfigDto.create(telegramBotName);
+        Optional<Long> telegramId = jwt.claim("telegramId");
 
-        String username = jwt.getSubject();
-
-        if (username != null){
-            User user = User.findByTelegramUsername(username);
+        telegramId.ifPresent(id ->{
+            User user = User.findByTelegramId(id);
             config.setUserProperties(user);
-        }
+        });
 
         return config;
     }

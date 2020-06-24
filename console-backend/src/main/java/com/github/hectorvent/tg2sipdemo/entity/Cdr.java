@@ -39,8 +39,8 @@ public class Cdr extends PanacheEntityBase {
         return find("id", id).firstResult();
     }
 
-    public static List<Cdr> findByUsername(final String username) {
-        return find("user.telegramUsername", username).list();
+    public static List<Cdr> findByTelegramId(final Long telegramId) {
+        return find("user.telegramId", telegramId).list();
     }
 
 }
