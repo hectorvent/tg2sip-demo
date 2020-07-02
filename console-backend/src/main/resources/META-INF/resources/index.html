@@ -34,31 +34,37 @@
   <body>
 
     <div class="container-fluid">
-        <nav class="navbar navbar-light bg-light sticky-top navbar-expand-lg col-lg-12">
+
+        <nav class="navbar navbar-light bg-light sticky-top">
             <a class="navbar-brand" href="#">Tg2SIP Demo</a>
 
             <form class="form-inline" id="form-auth">
-
               <div id="userInfo" style="display: none">
-                <span style="font-style: italic" id="userName"></span> |
-                <a href="#" onclick="logout(); return;">logout</a>
-                <span id="userImage" class="user">
-                </span>
+                <p style="margin-bottom: -8px;"> <span style="font-style: italic" id="userName"></span></p>
+                <p> <a href="#" onclick="logout(); return;">logout</a></p>
               </div>
+              <span style="margin-left: 10px;" id="userImage" class="user"></span>
             </form>
         </nav>
 
-      <div id="app" class="col-md-12 col-lg-12" style="padding-top: 65px;">
+        <div id="app" class="col-md-12 col-lg-12 text-right" style="padding-top: 20px;">
+          <div class="btn-group">
+            <a target="blank" class="btn btn-primary" href="https://t.me/tg2sipdemo">Call @tg2sipdemo</a>
+            <button type="button" class="btn btn-success"  id="btn-callme" >Call Me</button>
+          </div>
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btn-calls">
+            <label class="btn btn-secondary active">
+              <input type="radio" name="options" id="allCalls" checked> All Calls
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="myCalls"> My Calls
+            </label>
+          </div>
+        </div>
+
+      <div id="app" class="col-md-12 col-lg-12">
         <h3> Call Logs </h3>
-
-        <div class="btn-group">
-        <a target="blank" class="btn btn-primary" href="https://t.me/tg2sipdemo">Call @tg2sipdemo</a>
-
-
-        <button type="button" id="btnCallMe" id="btn-callme" class="btn btn-primary my-2 my-sm-0">Call me</button>
-        <button type="button" id="btnShowMyCalls" id="btn-callme" class="btn btn-warning my-2 my-sm-0">Only Mine</button>
-      </div>
-
         <table class="table table-hover">
           <thead>
             <tr>
@@ -70,7 +76,6 @@
             </tr>
           </thead>
           <tbody id="calllog-details">
-
 
           </tbody>
         </table>

@@ -69,8 +69,8 @@ function listeners() {
             // not a valid telegram userId
             if (res.id == -1){
 
-                document.getElementById('btnCallMe').style.display = 'none';
-                document.getElementById('btnShowMyCalls').style.display = 'none';
+                document.getElementById('btn-callme').style.display = 'none';
+                document.getElementById('btn-calls').style.display = 'none';
 
                 var telegramAuthWidget = document.createElement('script');
                 telegramAuthWidget.src = 'https://telegram.org/js/telegram-widget.js?9'
@@ -89,7 +89,7 @@ function listeners() {
         })
         .catch( err => {
             storage.removeItem('token');
-           window.location = "/";
+            window.location = "/";
             console.log(err);
         });
 }

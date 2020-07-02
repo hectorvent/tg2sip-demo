@@ -1,5 +1,7 @@
 package com.github.hectorvent.tg2sipdemo;
 
+import java.util.Optional;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.Json;
@@ -48,19 +50,20 @@ public class AuthResource {
             return Response.status(Status.BAD_REQUEST).build();
         }
 
-        User user = User.findByTelegramId(authData.id);
+        Optional<User> optUser = User.findByTelegramId(authData.id);
 
-        if (user == null){
-            user = new User();
+        optUser.ifPresent(u -> {
+            u.telegramPhoto = authData.photoUrl;
+            u.flush();
+        });
+
+        if (optUser.isEmpty()){
+            User user = new User();
             user.telegramId = authData.id;
             user.telegramName = authData.getFullName();
             user.telegramUsername = authData.username;
             user.telegramPhoto = authData.photoUrl;
-
             user.persist();
-        } else {
-            user.telegramPhoto = authData.photoUrl;
-            user.flush();
         }
 
         return Response.ok(Json.createObjectBuilder().add("token", token).build()).build();

@@ -1,6 +1,7 @@
 package com.github.hectorvent.tg2sipdemo.entity;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
@@ -52,7 +53,7 @@ public class User extends PanacheEntityBase {
         return find("id", id).firstResult();
     }
 
-    public static User findByTelegramId(Long telegramId) {
-        return find("telegramId", telegramId).firstResult();
+    public static Optional<User> findByTelegramId(Long telegramId) {
+        return find("telegramId", telegramId).firstResultOptional();
     }
 }
