@@ -3,17 +3,17 @@ Tg2SIP DEMO
 
 ![console-backend](https://github.com/hectorvent/tg2sip-demo/workflows/Build%20Tg2SIP%20Demo%20WebConsole/badge.svg)
 
-> Note: This demo when is completed will be hosted on that way you can test it quickly.
+> Note: This demo from the moment it is finished will be hosted and in this way you can test it.
 
-> Note: This demo is not yet compleated. For now you just can review code.
+> Note: This demo is not yet completed. For now, you just can review the code.
 
-It's just a demo to show what you can do with this [Tg2SIP](https://github.com/hectorvent/tg2sip) Gateway.
+It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.com/hectorvent/tg2sip) and other cool technologies.
 
 ## Things that you can do
 
 - Call and listen a music and hold
 - See call logs
-- Change music music and ho
+- Change media (Music/Music on Hold)
 
 ## Used Technologies
 
