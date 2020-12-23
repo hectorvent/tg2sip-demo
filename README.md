@@ -19,11 +19,11 @@ It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.c
 
 * **Tg2SIP**: Telegram to SIP gateway
 * **Freeswitch**: VoIP Switch Platform
-* **Postgresql**: Database server to hold call logs and Apps configuration
-* **Lua**: Used internally on Freeswitch to manage the dialplan, in the future I will include a version with Python3.
-* **Ansible**: A Red Hat tool to make deployment and provisioning
-* **Quarkus**: A Kubernetes Native Java stack
-* **Javascript**: Vanilla Javascript, as I'm a backend developer, so sorry.
+* **Postgresql**: Database server to store call logs and the configuration.
+* **Lua**: Used internally on Freeswitch to manage the dialplan. I will create in the near future a python version.
+* **Ansible**: A Red Hat tool to make deployment and provisioning.
+* **Quarkus**: A Kubernetes Native Java stack.
+* **Javascript**: Vanilla JavaScript, sorry.
 * **Debian**: Linux Server on all this magic happend
 * **Telegram Login**: way to login into the demo is using this service provide by telegram
 * **Docker**: As alternative way to deploy all services.
