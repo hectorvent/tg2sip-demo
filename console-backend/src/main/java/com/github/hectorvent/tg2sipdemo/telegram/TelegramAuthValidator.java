@@ -12,21 +12,21 @@ public class TelegramAuthValidator {
     private TelegramAuthData authData;
     private String botToken;
 
-    public static final TelegramAuthValidator createIntance(){
+    public static final TelegramAuthValidator createInstance() {
         return new TelegramAuthValidator();
     }
 
-    public TelegramAuthValidator setBotToken(String botToken){
+    public TelegramAuthValidator setBotToken(String botToken) {
         this.botToken = botToken;
         return this;
     }
 
-    public TelegramAuthValidator setAuthData(TelegramAuthData authData){
+    public TelegramAuthValidator setAuthData(TelegramAuthData authData) {
         this.authData = authData;
         return this;
     }
 
-    public boolean validate(){
+    public boolean validate() {
 
         StringBuilder dataCheckString = new StringBuilder("")
                 .append("auth_date=")
@@ -55,7 +55,7 @@ public class TelegramAuthValidator {
         return resultHash.equals(authData.hash);
     }
 
-    private byte[] getSecretKey(String value){
+    private byte[] getSecretKey(String value) {
         MessageDigest digest;
 		try {
             digest = MessageDigest.getInstance("SHA-256");
@@ -70,8 +70,10 @@ public class TelegramAuthValidator {
     private static String bytesToHex(byte[] hash) {
         StringBuffer hexString = new StringBuffer();
         for (int i = 0; i < hash.length; i++) {
-        String hex = Integer.toHexString(0xff & hash[i]);
-        if(hex.length() == 1) hexString.append('0');
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
             hexString.append(hex);
         }
         return hexString.toString();

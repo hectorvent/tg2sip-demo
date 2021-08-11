@@ -27,7 +27,7 @@ public class VoIPCallMe {
             .flatMap(User::findByTelegramId)
             .ifPresentOrElse(u-> {
                 // TODO: here execute ESL Freeswitch to call this user
-            }, () ->{
+            }, () -> {
 
             });
 

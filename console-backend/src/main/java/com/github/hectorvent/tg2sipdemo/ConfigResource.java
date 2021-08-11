@@ -32,9 +32,9 @@ public class ConfigResource {
         ConfigDto config = ConfigDto.create(telegramBotName);
         Optional<Long> telegramId = TokenUtils.getUserId(jwt);
 
-        telegramId.ifPresent(id ->{
-            User user = User.findByTelegramId(id);
-            config.setUserProperties(user);
+        telegramId.ifPresent(id -> {
+            Optional<User> user = User.findByTelegramId(id);
+            user.ifPresent(config::setUserProperties);
         });
 
         return config;

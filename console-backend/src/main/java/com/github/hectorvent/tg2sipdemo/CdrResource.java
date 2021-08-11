@@ -33,9 +33,9 @@ public class CdrResource {
         Optional<Long> telegramId = TokenUtils.getUserId(jwt);
 
         List<Cdr> calls = Cdr.findAll().list();
-            return calls.stream()
-                .map( c -> CdrDto.mappper(c, telegramId))
-                .collect(Collectors.toList());
+        return calls.stream()
+            .map( c -> CdrDto.mappper(c, telegramId))
+            .collect(Collectors.toList());
     }
 
 }

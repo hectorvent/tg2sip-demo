@@ -34,7 +34,7 @@ public class AuthResource {
     @Transactional
     public Response check(TelegramAuthData authData) {
 
-       boolean isValid =  TelegramAuthValidator.createIntance()
+       boolean isValid =  TelegramAuthValidator.createInstance()
             .setAuthData(authData)
             .setBotToken(telegramBotToken)
             .validate();
@@ -57,7 +57,7 @@ public class AuthResource {
             u.flush();
         });
 
-        if (optUser.isEmpty()){
+        if (optUser.isEmpty()) {
             User user = new User();
             user.telegramId = authData.id;
             user.telegramName = authData.getFullName();

@@ -25,7 +25,6 @@ public class ConfigDto {
         return cdto;
     }
 
-
     public void setUserProperties(User user){
 
         if (user == null){
