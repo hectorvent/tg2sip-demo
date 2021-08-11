@@ -12,3 +12,5 @@ console-frontend/public/app/
 
 # Exclude python files
 *.py
+
+console-backend/.idea
