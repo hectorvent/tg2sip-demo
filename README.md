@@ -30,5 +30,6 @@ It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.c
 
 ## TODO:
 
-* Join into a call conference
+* Join into a conference
 * Call forward
+* Anonymous call a contact
