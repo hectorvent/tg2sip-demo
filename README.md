@@ -11,22 +11,22 @@ It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.c
 
 ## Things that you can do
 
-- Call and listen a music and hold
-- See call logs
-- Change media (Music/Music on Hold)
+- Call and listen to a Music on Hold
+- See call detail records (CDR)
+- Change media for Music on Hold
 
 ## Used Technologies
 
-* **Tg2SIP**: Telegram to SIP gateway
-* **Freeswitch**: VoIP Switch Platform
-* **Postgresql**: Database server to store call logs and the configuration.
-* **Lua**: Used internally on Freeswitch to manage the dialplan. I will create in the near future a python version.
-* **Ansible**: A Red Hat tool to make deployment and provisioning.
-* **Quarkus**: A Kubernetes Native Java stack.
-* **Javascript**: Vanilla JavaScript, sorry.
-* **Debian**: Linux Server on all this magic happend
-* **Telegram Login**: way to login into the demo is using this service provide by telegram
-* **Docker**: As alternative way to deploy all services.
+- [Tg2SIP](https://github.com/hectorvent/tg2sip) is a Telegram bridge to SIP gateway.
+- [Freeswitch](https://freeswitch.com/) is a free and open-source application server for real-time communication.
+- [PostgreSQL](https://www.postgresql.org/), also known as Postgres, is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance.
+- [Lua]() is a lightweight, high-level, multi-paradigm programming language designed primarily for embedded use in applications.
+- [Ansible](https://www.ansible.com/), is an open-source software provisioning, configuration management, and application-deployment tool enabling infrastructure as code.
+- [Quarkus](), A Kubernetes Native Java stack.
+- [Javascript]() Vanilla JavaScript, sorry.
+- [Debian]() Linux Server on all this magic happend
+- [Telegram Login](https://telegram.org/blog/login) way to login into the demo is using this service provide by telegram
+- [Docker](https://www.docker.com/) is an open source containerization platform.
 
 ## TODO:
 
