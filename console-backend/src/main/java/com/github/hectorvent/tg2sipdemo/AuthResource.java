@@ -18,7 +18,6 @@ import com.github.hectorvent.tg2sipdemo.utils.TokenUtils;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-
 @Path("/auth")
 @RequestScoped
 public class AuthResource {
