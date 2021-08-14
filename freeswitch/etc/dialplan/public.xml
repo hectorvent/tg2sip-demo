@@ -4,7 +4,6 @@
       <condition field="destination_number" expression="tg2sip-demo$">
         <action application="info"/>
         <action application="lua" data="tg2sip/handler_call.lua"/>
-        <!-- <action application="python" data="tg2sip.handler_call"/> -->
       </condition>
     </extension>
   </context>
