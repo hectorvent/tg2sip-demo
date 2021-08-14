@@ -36,7 +36,7 @@
         - /var/tg2sip
         - /etc/tg2sip
 
-    - name: copy setting file
+    - name: copy tg2sip setting file
       template:
         src: tg2sip/settings.ini.j2
         dest: /etc/tg2sip/settings.ini

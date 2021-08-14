@@ -49,5 +49,3 @@
       become_user: postgres
       shell:
         cmd: psql -c "alter user postgres with password '{{ postgres_password }}'"
-
-

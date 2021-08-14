@@ -24,7 +24,7 @@
         - scripts
         - sounds
 
-    - name: config db
+    - name: rendering database config
       template:
         src: freeswitch/scripts/db_config.lua.j2
         dest: /usr/share/freeswitch/scripts/tg2sip/db_config.lua
