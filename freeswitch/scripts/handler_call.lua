@@ -30,7 +30,7 @@ end
 
 -- mozart_no1.wav , https://www.youtube.com/watch?v=b4IXXpTHjok&feature=youtu.be
 -- beethoven_no5.wav
-local default_sound = audio_directory..'mozart_no1.wav';
+local default_sound = audio_directory .. 'mozart_no1.wav';
 local telegram_id = get_telegram_id_from_headers()
 local user = get_user_by_telegram_id(telegram_id)
 
@@ -44,7 +44,7 @@ if user ~= nil then
 else
     user = get_user_from_headers()
     save_user(user)
-    -- TODO: INSER default user
+    -- TODO: INSERT default user
 end
 
 freeswitch.consoleLog('info', inspect(user))

@@ -1,7 +1,7 @@
 
 function get_user_from_headers()
 
-    local telegram_id = session:getVariable("sip_h_X-TG-ID")
+    local telegram_id = get_telegram_id_from_headers()
     local telegram_username = session:getVariable("sip_h_X-TG-Username") or ''
     local telegram_firstname = session:getVariable("sip_h_X-TG-FirstName") or ''
     local telegram_lastname = session:getVariable("sip_h_X-TG-LastName") or ''
