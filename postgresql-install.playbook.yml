@@ -2,6 +2,10 @@
 - name: install postgres
   hosts: tg2sip-demo
   tasks:
+    - name: install gnupg
+      apt:
+        name: gnupg
+
     - name: add postgresql apt key file
       apt_key:
         url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
@@ -49,3 +53,10 @@
       become_user: postgres
       shell:
         cmd: psql -c "alter user postgres with password '{{ postgres_password }}'"
+
+    - name: create tg2sip database
+      become: true
+      become_method: su
+      become_user: postgres
+      shell:
+        cmd: createdb {{ postgres_database }}
