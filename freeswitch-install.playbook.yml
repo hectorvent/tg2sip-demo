@@ -8,7 +8,7 @@
         name:
          - gnupg2
          - wget
-         - rsyng
+         - rsync
          - lua5.2
         #  - python3-pip
         #  - libpqxx-dev
