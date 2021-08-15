@@ -14,6 +14,7 @@ It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.c
 - Call and listen to a Music on Hold
 - See call detail records (CDR)
 - Change media for Music on Hold
+- Change media with DTMF
 
 ## Used Technologies
 
