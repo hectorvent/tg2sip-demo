@@ -11,7 +11,7 @@
 
     - name: download tg2sip debian 10 (buster) build and extract it
       unarchive:
-        src: https://github.com/hectorvent/tg2sip/releases/download/v1.2.0/debian10-buster.tar.xz
+        src: https://github.com/hectorvent/tg2sip/releases/download/v1.2.0/tg2sip-1.2.0-debian10-buster.tar.xz
         dest: /usr/local/bin/
         remote_src: yes
 
