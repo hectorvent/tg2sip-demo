@@ -2,6 +2,11 @@
 ---
 - hosts: tg2sip-demo
   tasks:
+    - name: removing default freeswitch examples files
+      file:
+        state: absent
+        path: /etc/freeswitch
+
     - name: copy freeswitch files
       synchronize:
         src: freeswitch/etc/
