@@ -5,7 +5,7 @@
 ansible_password=
 ansible_user=
 
-# which can be obtained at https://my.telegram.org
+# Create the app here => https://my.telegram.org
 telegram_api_id=
 telegram_api_hash=
 telegram_p2p=false
@@ -17,4 +17,4 @@ postgres_host=192.168.1.141
 postgres_port=5432
 postgres_password=password
 
-development_postgres_network=192.168.56.0/24
+development_postgres_network=192.168.1.0/24
