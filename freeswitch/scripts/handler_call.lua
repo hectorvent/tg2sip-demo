@@ -9,8 +9,11 @@ local inspect = require('inspect')
 local audio_directory = '/usr/share/freeswitch/sounds/tg2sip/'
 
 function hangup_hook(s, status)
-    local callid = session:getVariable('uuid')
-    db_end_call_cdr({ callid = callid })
+    local call_id = session:getVariable('uuid')
+
+    if call_id ~= nil then
+        db_end_call_cdr({ call_id = callid })
+    end
     freeswitch.consoleLog('info', 'Ending call')
 end
 
@@ -49,11 +52,11 @@ end
 
 freeswitch.consoleLog('info', inspect(user))
 
-local callid = session:getVariable('uuid')
+local call_id = session:getVariable('uuid')
 local cdr = {
     call_type =  'inbound',
     user_id = user.id,
-    callid = callid
+    call_id = call_id
 }
 
 save_cdr(cdr)

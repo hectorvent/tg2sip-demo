@@ -29,16 +29,16 @@ end
 function save_cdr(cdr)
 
     local query = db:prepare([[
-        INSERT INTO cdr ( call_type, user_id, callid ) VALUES (':call_type', :user_id, ':callid')
+        INSERT INTO cdr ( call_type, user_id, call_id ) VALUES (':call_type', :user_id, ':call_id')
         ]], {
             call_type = cdr.call_type,
             user_id = cdr.user_id,
-            callid = cdr.callid
+            call_id = cdr.call_id
         })
 
     db:query(query)
 end
 
 function end_cdr(cdr)
-    db:query("UPDATE cdr SET end_date = CURRENT_TIMESTAMP where callid ='" .. cdr.callid .. "'")
+    db:query("UPDATE cdr SET end_date = CURRENT_TIMESTAMP where call_id ='" .. cdr.call_id .. "'")
 end
