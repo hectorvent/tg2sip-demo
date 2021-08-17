@@ -60,3 +60,16 @@
       become_user: postgres
       shell:
         cmd: createdb {{ postgres_database }}
+
+    - name: copy sql file
+      copy:
+        src: postgres/database_ddl.sql
+        dest: /var/lib/postgresql/database_ddl.sql
+        mode: '0777'
+
+    - name: create database structure
+      become: true
+      become_method: su
+      become_user: postgres
+      shell:
+        cmd: psql -d {{ postgres_database }} -f /var/lib/postgresql/database_ddl.sql
