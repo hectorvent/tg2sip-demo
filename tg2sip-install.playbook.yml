@@ -6,14 +6,25 @@
       apt:
         update_cache: yes
         name:
+         - unzip
          - libopus0
          - libssl1.1
 
     - name: download tg2sip debian 10 (buster) build and extract it
       unarchive:
-        src: https://github.com/hectorvent/tg2sip/releases/download/v1.2.0/tg2sip-1.2.0-debian10-buster.tar.xz
+        src: https://github.com/hectorvent/tg2sip/releases/download/v1.2.0/tg2sip-1.2.0-debian10-buster-tdlib1.6.0.zip
         dest: /usr/local/bin/
         remote_src: yes
+
+    - name: Copy files from foo to bar
+      copy:
+        remote_src: True
+        src: /usr/local/bin/build/{{ item }}
+        dest: /usr/local/bin/{{ item }}
+        mode: '0777'
+      with_items:
+        - gen_db
+        - tg2sip
 
     - name: set executable permissions to files
       file:
