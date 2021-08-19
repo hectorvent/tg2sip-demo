@@ -14,4 +14,16 @@ public class TelegramAuthData {
         return firstName + ' ' + lastName;
     }
 
+    @Override
+    public String toString() {
+        return "TelegramAuthData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", hash='" + hash + '\'' +
+                ", authDate=" + authDate +
+                ", photoUrl='" + photoUrl + '\'' +
+                '}';
+    }
 }

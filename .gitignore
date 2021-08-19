@@ -14,3 +14,4 @@ console-frontend/public/app/
 *.py
 
 console-backend/.idea
+application.properties

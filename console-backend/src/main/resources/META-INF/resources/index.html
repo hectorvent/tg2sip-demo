@@ -15,21 +15,11 @@
           border-radius: 50%;
 
           background-repeat: no-repeat;
-          background-position: center center;
+          background-position: center;
           background-size: cover;
         }
-
       </style>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      <script type="text/javascript">
-        function telegramAuth(user) {
-          var event = new CustomEvent('tg2sip.telegram.auth', { 'detail': user });
-          document.dispatchEvent(event);
-        }
-        function logout(){
-          document.dispatchEvent(new Event('tg2sip.telegram.logout'));
-        }
-      </script>
     </head>
   <body>
 
@@ -37,7 +27,6 @@
 
         <nav class="navbar navbar-light bg-light sticky-top">
             <a class="navbar-brand" href="#">Tg2SIP Demo</a>
-
             <form class="form-inline" id="form-auth">
               <div id="userInfo" style="display: none">
                 <p style="margin-bottom: -8px;"> <span style="font-style: italic" id="userName"></span></p>
@@ -47,10 +36,10 @@
             </form>
         </nav>
 
-        <div id="app" class="col-md-12 col-lg-12 text-right" style="padding-top: 20px;">
+        <div id="btn-group-1" class="col-md-12 col-lg-12 text-right" style="padding-top: 20px;">
           <div class="btn-group">
-            <a target="blank" class="btn btn-primary" href="https://t.me/tg2sipdemo">Call @tg2sipdemo</a>
-            <button type="button" class="btn btn-success"  id="btn-callme" >Call Me</button>
+            <a target="blank" class="btn btn-primary" href="https://t.me/tg2sip">Call @tg2sip</a>
+            <button type="button" class="btn btn-success"  id="btn-callme">Call Me</button>
           </div>
 
           <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btn-calls">

@@ -32,6 +32,15 @@ function loadCdr(){
         });
 }
 
+function onTelegramAuth(user) {
+    var event = new CustomEvent('tg2sip.telegram.auth', { 'detail': user });
+    document.dispatchEvent(event);
+}
+
+function logout(){
+    document.dispatchEvent(new Event('tg2sip.telegram.logout'));
+}
+
 function listeners() {
 
     document.addEventListener('tg2sip.telegram.auth', function (e) {
@@ -73,10 +82,10 @@ function listeners() {
                 document.getElementById('btn-calls').style.display = 'none';
 
                 var telegramAuthWidget = document.createElement('script');
-                telegramAuthWidget.src = 'https://telegram.org/js/telegram-widget.js?9'
+                telegramAuthWidget.src = 'https://telegram.org/js/telegram-widget.js?15'
                 telegramAuthWidget.setAttribute('data-telegram-login', res.botName);
                 telegramAuthWidget.setAttribute('data-size', 'large');
-                telegramAuthWidget.setAttribute('data-onauth', 'telegramAuth(user)');
+                telegramAuthWidget.setAttribute('data-onauth', 'onTelegramAuth(user)');
 
                 var doc = document.getElementById('form-auth');
                 doc.appendChild(telegramAuthWidget);

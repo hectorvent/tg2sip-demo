@@ -3,7 +3,7 @@ Tg2SipDemo =  {
     basePath: '',
 
     setToken(token){
-        Request.token  = token;
+        Request.token = token;
     },
     getConfig() {
         return Request.get(`${this.basePath}/config`);

@@ -27,7 +27,7 @@ Request = {
 
         var headers = {
             'Content-Type': 'application/json'
-          }
+        }
 
         if (this.token !== undefined && this.token != null){
             headers["Authorization"] = `Bearer ${this.token}`;

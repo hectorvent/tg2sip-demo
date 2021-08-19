@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  postgres-db:
+    image: postgres:11
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=tg2sipdemo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+
+volumes:
+  postgres_db:

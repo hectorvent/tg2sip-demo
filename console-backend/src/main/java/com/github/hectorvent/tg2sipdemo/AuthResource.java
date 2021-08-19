@@ -16,11 +16,15 @@ import com.github.hectorvent.tg2sipdemo.entity.User;
 import com.github.hectorvent.tg2sipdemo.telegram.TelegramAuthData;
 import com.github.hectorvent.tg2sipdemo.utils.TokenUtils;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.jboss.logging.Logger;
 
 @Path("/auth")
 @RequestScoped
 public class AuthResource {
+
+    private static final Logger LOG = Logger.getLogger(AuthResource.class);
 
     @Inject
     TokenUtils tokenUtils;
@@ -33,30 +37,31 @@ public class AuthResource {
     @Transactional
     public Response check(TelegramAuthData authData) {
 
-       boolean isValid =  TelegramAuthValidator.createInstance()
+       boolean isValid = TelegramAuthValidator.createInstance()
             .setAuthData(authData)
             .setBotToken(telegramBotToken)
             .validate();
 
         if (!isValid){
+            LOG.error("Error validating Telegram received auth data");
             return Response.status(Status.BAD_REQUEST).build();
         }
 
         String token = null;
         try {
             token = tokenUtils.generateToken(authData.username, authData.id, 3600L);
-        } catch(Exception ex){
+        } catch(Exception ex) {
+            LOG.error("Error generating token: ", ex);
             return Response.status(Status.BAD_REQUEST).build();
         }
 
         Optional<User> optUser = User.findByTelegramId(authData.id);
 
-        optUser.ifPresent(u -> {
-            u.telegramPhoto = authData.photoUrl;
-            u.flush();
-        });
-
-        if (optUser.isEmpty()) {
+        if (optUser.isPresent()) {
+            User user = optUser.get();
+            user.telegramPhoto = authData.photoUrl;
+            user.flush();
+        } else {
             User user = new User();
             user.telegramId = authData.id;
             user.telegramName = authData.getFullName();
