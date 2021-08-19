@@ -10,6 +10,7 @@ CREATE TABLE public.users (
 	telegram_name varchar NULL,
 	telegram_username varchar NULL,
 	telegram_phone varchar NULL,
+	telegram_photo varchar NULL,
 	default_sound varchar NULL,
 	show_as_public bool NULL DEFAULT false,
 	CONSTRAINT telegram_user_id_unq UNIQUE (telegram_id),
