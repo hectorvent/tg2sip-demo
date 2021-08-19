@@ -13,4 +13,3 @@ mp.jwt.verify.publickey.location=/public_key.pem
 mp.jwt.verify.issuer=http://tg2sipdemo.local/
 
 quarkus.http.cors=true
-quarkus.http.port=80
