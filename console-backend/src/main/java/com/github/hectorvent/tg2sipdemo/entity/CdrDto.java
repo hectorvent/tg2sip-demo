@@ -9,7 +9,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 @RegisterForReflection
 public class CdrDto {
 
-    public static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+    public static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
 
     public Long id;
     public String callType;
