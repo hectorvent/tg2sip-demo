@@ -1,5 +1,5 @@
-Tg2SIP DEMO
-===========
+Telegram to SIP demo
+====================
 
 ![console-backend](https://github.com/hectorvent/tg2sip-demo/workflows/Build%20Tg2SIP%20Demo%20WebConsole/badge.svg)
 
