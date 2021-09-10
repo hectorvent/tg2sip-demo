@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  freeswitch:
+    image: safarov/freeswitch
+    volumes:
+      - freeswitch_sounds:/usr/share/freeswitch/sounds
+    environment:
+      - SOUND_RATES=8000:16000
+      - SOUND_TYPES=music:en-us-callie
+    networks:
+      tg2sip:
+        ipv4_address: 10.5.0.2
+
+  tg2sip:
+    image: hectorvent/tg2sip-gateway
+    volumes:
+      - tg2sip:/etc/tg2sip/
+    networks:
+      tg2sip:
+        ipv4_address: 10.5.0.3
+
+  postgres:
+    image: postgres:11
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=registry
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  freeswitch_sounds:
+  tg2sip:
+  postgres_db:
+
+networks:
+  tg2sip:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
