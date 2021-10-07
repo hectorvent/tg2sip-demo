@@ -9,10 +9,11 @@ local inspect = require('inspect')
 local audio_directory = '/usr/share/freeswitch/sounds/tg2sip/'
 
 function hangup_hook(s, status)
-    local call_id = session:getVariable('uuid')
+    local call_id = s:getVariable('uuid')
 
     if call_id ~= nil then
-        db_end_call_cdr({ call_id = callid })
+        freeswitch.consoleLog('info', inspect({ call_id = call_id }))
+        end_cdr({ call_id = call_id })
     end
     freeswitch.consoleLog('info', 'Ending call')
 end
@@ -47,7 +48,6 @@ if user ~= nil then
 else
     user = get_user_from_headers()
     save_user(user)
-    -- TODO: INSERT default user
 end
 
 freeswitch.consoleLog('info', inspect(user))
