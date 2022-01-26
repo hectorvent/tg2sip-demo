@@ -1,2 +1,5 @@
 .env
 settings.ini
+
+console-backend/.idea
+application.properties
