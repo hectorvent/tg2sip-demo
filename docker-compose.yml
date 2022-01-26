@@ -1,15 +1,36 @@
 version: "3.8"
 services:
-  freeswitch:
-    image: safarov/freeswitch
-    volumes:
-      - freeswitch_sounds:/usr/share/freeswitch/sounds
-    environment:
-      - SOUND_RATES=8000:16000
-      - SOUND_TYPES=music:en-us-callie
+  postgres:
+    image: postgres:11
     networks:
       tg2sip:
         ipv4_address: 10.5.0.2
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=tg2sipdemo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  tg2sip-demo-console:
+    image: hectorvent/tg2sip-demo-backend
+    networks:
+      tg2sip:
+        ipv4_address: 10.5.0.3
+    environment:
+      - DB_USER=value
+      - TG2SIP_IP=10.5.0.5
+      - FREESWITCH_IP=10.5.0.4
+      - POSTGRES_HOST=postgres
+      - TG2SIPDEMO_TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+
+  freeswitch:
+    image: hectorvent/tg2sip-freeswitch
+    networks:
+      tg2sip:
+        ipv4_address: 10.5.0.4
 
   tg2sip:
     image: hectorvent/tg2sip-gateway
@@ -17,22 +38,9 @@ services:
       - tg2sip:/etc/tg2sip/
     networks:
       tg2sip:
-        ipv4_address: 10.5.0.3
-
-  postgres:
-    image: postgres:11
-    volumes:
-      - postgres_db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=registry
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+        ipv4_address: 10.5.0.5
 
 volumes:
-  freeswitch_sounds:
-  tg2sip:
   postgres_db:
 
 networks:

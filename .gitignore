@@ -1,17 +1,2 @@
-# Ansible
-hosts
-development.playbook.yml
-
-# Java
-console-backend/target
-
-console-frontend/node_modules
-
-console-frontend/public/app/
-!console-frontend/public/app/.gitkeep
-
-# Exclude python files
-*.py
-
-console-backend/.idea
-application.properties
+.env
+settings.ini

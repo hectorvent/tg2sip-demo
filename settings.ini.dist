@@ -1,0 +1,49 @@
+[logging]
+# 0-trace 1-debug 3-warn 2-info 4-err 5-crit 6-off
+;core=2
+;tgvoip=5
+;pjsip=2
+
+;sip_messages=false
+;console_min_level=0
+;file_min_level=0
+
+# 0-fatal  1-errors  2-warnings  3-info 4-debug 5-verbose debug
+;tdlib=3
+
+[sip]
+# Address to advertise as the address UDP transport.
+;public_address=
+;stun_server=
+
+# port number specified in port.
+port=5062
+
+# Specify the port range for socket binding, relative to the start
+;port_range=0
+
+# The Address of Record or AOR, that is full SIP URL that identifies the account.
+# The value can take name address or URL format, and will look something
+# like "sip:account@serviceprovider".
+;id_uri=sip:localhost
+
+# SIP URI for TG->SIP incoming calls processing
+# This param will modify those field on SIP message:
+#     INVITE sip:tg-extension-on-pbx@192.168.1.140:5060 SIP/2.0
+#     To: sip:tg-extension-on-pbx@192.168.1.140
+callback_uri=sip:tg2sip-demo@10.5.0.3
+
+# use L16@48k codec if true or OPUS@48k otherwise
+raw_pcm=false
+
+# Specify the number of worker threads to handle incoming RTP
+# packets. A value of one is recommended for most applications.
+;thread_count=1
+
+[telegram]
+# ID and Hash which can be obtained at https://my.telegram.org.
+api_id=
+api_hash=
+
+# True, if UDP peer-to-peer connections are supported
+udp_p2p=true
