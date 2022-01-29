@@ -1,4 +1,4 @@
-Telegram to SIP demo
+:phone: Telegram to SIP demo
 ====================
 
 ![console-backend](https://github.com/hectorvent/tg2sip-demo/workflows/Build%20Tg2SIP%20Demo%20WebConsole/badge.svg)
@@ -11,12 +11,11 @@ It is just a demo to show what you can do with [Tg2SIP Gateway](https://github.c
 
 ## Things that you can do
 
-- Call and listen to a Music on Hold
-- See call detail records (CDR)
-- Change media for Music on Hold
+- Call and listen to a MoH (Music on Hold)
+- See CDR (Call Detail Records)
 - Change media with DTMF
 
-## Used Technologies
+## :hammer: Used Tools & Technologies
 
 - [Tg2SIP](https://github.com/hectorvent/tg2sip) is a Telegram bridge to SIP gateway.
 - [Freeswitch](https://freeswitch.com/) is a free and open-source application server for real-time communication.
