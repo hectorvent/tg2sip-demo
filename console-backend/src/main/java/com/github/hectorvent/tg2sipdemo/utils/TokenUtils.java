@@ -43,7 +43,7 @@ public class TokenUtils {
 
 		claimsBuilder.claim("telegramId", String.valueOf(userId));
 
-		return claimsBuilder.jws().signatureKeyId(privateKeyLocation).sign(privateKey);
+		return claimsBuilder.jws().keyId(privateKeyLocation).sign(privateKey);
 	}
 
 	public static final Optional<Long> getUserId(JsonWebToken jwt){
